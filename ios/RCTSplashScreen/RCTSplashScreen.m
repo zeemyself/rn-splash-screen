@@ -38,13 +38,12 @@ RCT_EXPORT_MODULE(SplashScreen)
     rootView = v;
     rootView.loadingViewFadeDelay = 0.1;
     rootView.loadingViewFadeDuration = 0.1;
-    UIImageView *view = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    NSString* launchFn = [RCTSplashScreen splashImageNameForOrientation];
-    view.image = [UIImage imageNamed:launchFn];
+    UIView *LaunchScreen = [[[NSBundle mainBundle] loadNibNamed:@"LaunchScreen" owner:self options:nil] firstObject];
+    LaunchScreen.frame = CGRectMake(0, 0, 0, 0);
 
     [[NSNotificationCenter defaultCenter] removeObserver:rootView  name:RCTContentDidAppearNotification object:rootView];
 
-    [rootView setLoadingView:view];
+    [rootView setLoadingView:LaunchScreen];
 }
 
 
